@@ -54,7 +54,7 @@ public class file_translator {
 					token = t[3];
 					
 					String record_name = word+ "_" + speed + "_" + sequence +  "_" + token + ".wav";
-					//System.out.println(record_name);
+					System.out.println(record_name);
 					
 					names.add(record_name);
 					word_reader.close();
@@ -79,47 +79,10 @@ public class file_translator {
 		return names;
 	}
 	
-	public static void output_voice() {
-		// to store current position 
-	    Long currentFrame; 
-	    Clip clip; 
-	      
-	    // current status of clip 
-	    String status; 
-	      
-	    AudioInputStream audioInputStream; 
-	    String filePath; 
-	    
-		try {
-			filePath = "Recording/chat/cht_f_w_1.wav";
-			audioInputStream =  AudioSystem.getAudioInputStream(new File(filePath).getAbsoluteFile());
-			
-			// create clip reference 
-	        clip = AudioSystem.getClip(); 
-	          
-	        // open audioInputStream to the clip 
-	        clip.open(audioInputStream); 
-	          
-	        clip.loop(Clip.LOOP_CONTINUOUSLY); 
-	        
-	        
-		} catch (UnsupportedAudioFileException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (LineUnavailableException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} 
-	}
-
-
 
 	public static void main(String[] args) {
 		ArrayList<String> names = file_translation("output.txt");
-		System.out.println(names.toString());
+		//System.out.println(names.toString());
 		
      
 	}
