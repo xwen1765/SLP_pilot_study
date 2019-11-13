@@ -93,7 +93,7 @@ public class audio_player
 	
 	// Work as the user enters his choice 
 	
-	private void gotoChoice(int c) 
+	void gotoChoice(int c) 
 			throws IOException, LineUnavailableException, UnsupportedAudioFileException 
 	{ 
 		switch (c) 

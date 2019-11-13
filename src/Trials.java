@@ -14,7 +14,7 @@ public class Trials {
 
 	@Override
 	public String toString() {
-		return "Trials [word=" + word + ", sequence=" + sequence + "]";
+		return "Trials [word=" + word +  ", speed=" + speed + ", sequence=" + sequence + ", token=" + token+"]";
 	}
 
 
