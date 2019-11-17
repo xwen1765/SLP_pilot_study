@@ -8,15 +8,20 @@ import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowEvent;
 import java.awt.image.BufferedImage;
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.concurrent.TimeUnit;
 
 import javax.imageio.ImageIO;
 import javax.sound.sampled.LineUnavailableException;
@@ -31,6 +36,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.JTextPane;
+import javax.swing.RepaintManager;
 import javax.swing.WindowConstants;
 import javax.swing.border.Border;
 
@@ -38,41 +44,30 @@ public class project_launcher {
 	static GraphicsDevice device = GraphicsEnvironment
 			.getLocalGraphicsEnvironment().getScreenDevices()[0];
 
-	static ArrayList<String> names = file_translator.file_translation("output.txt");
-	static int i = 0, end = names.size();
+	static ArrayList<String> names;
+	static int i = 0, end = 0, is_whole_word = 0;
 	static String response = "";
 	static boolean is_respond = true, is_played = false;
-	
+	static String file_name = "";
+	static long start_time = 0, end_time = 0;
 	static FileWriter out = null;
 	static BufferedWriter bw = null;
 	static DateFormat dateFormat = new SimpleDateFormat("yyyy_MM_dd_HH_mm_ss");
 	static Date date = new Date();
-	
+
 	static String user_name = "", user_email = "";
-	
-	
+
 
 	public static void user_input() {
 		JFrame user_input_frame = new JFrame("User Input");
-		int u_width = 400, u_height = 300;
+		int u_width = 400, u_height = 200;
 		user_input_frame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		user_input_frame.setPreferredSize(new Dimension(u_width, u_height));
 		user_input_frame.setSize(u_width,u_height);
 		Dimension u_dim = Toolkit.getDefaultToolkit().getScreenSize();
 		user_input_frame.setLocation(u_dim.width/2 - user_input_frame.getSize().width/2, u_dim.height/2 - user_input_frame.getSize().height/2);
 
-		JButton btn = new JButton("Finish");
-		btn.addActionListener(new ActionListener() {
 
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				user_input_frame.dispose();
-				running_setting();
-			}
-		});
-		JPanel panel = new JPanel(new GridLayout());
-		panel.add(btn);
 
 		JPanel panel2 = new JPanel();
 		panel2.setLayout(new BoxLayout(panel2, BoxLayout.Y_AXIS));
@@ -83,15 +78,15 @@ public class project_launcher {
 		name_panel.add(name);
 		name_panel.add(text1);
 
-		JPanel gender_panel = new JPanel(new FlowLayout());
-		JLabel gender = new JLabel("Gender: ");
-		JCheckBox male = new JCheckBox("Male");
-		JCheckBox fem = new JCheckBox("Female");
-		JCheckBox non = new JCheckBox("Non relevent");
-		gender_panel.add(gender);
-		gender_panel.add(male);
-		gender_panel.add(fem);
-		gender_panel.add(non);
+		text1.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				user_name = text1.getText();
+			}
+		});
+
 
 		JPanel email_panel = new JPanel(new FlowLayout());
 		JLabel email = new JLabel("E-mail Address: ");
@@ -99,8 +94,32 @@ public class project_launcher {
 		email_panel.add(email);
 		email_panel.add(text2);
 
+		text2.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				user_email = text2.getText();
+			}
+		});
+
+		JButton btn = new JButton("Finish");
+		btn.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				user_name = text1.getText();
+				user_email = text2.getText();
+				initialize();
+				user_input_frame.dispose();
+				running_setting();
+			}
+		});
+		JPanel panel = new JPanel(new GridLayout());
+		panel.add(btn);
+
 		panel2.add(name_panel);
-		panel2.add(gender_panel);
 		panel2.add(email_panel);
 
 		user_input_frame.add(panel2, BorderLayout.CENTER);
@@ -109,7 +128,18 @@ public class project_launcher {
 
 	}
 
+	public static void initialize() {
+		stimuli_list_generator gn = new stimuli_list_generator();
+		gn.subject_name = user_name;
+		gn.required_sequence = 1;
+		gn.random_sequence_generator(gn.required_sequence);
+		String file_name = "subject_stimuli_list/list_"+gn.subject_name+".txt";
+		names = file_translator.file_translation(file_name);
+		end = names.size();
+	}
+
 	public static void running_setting(){
+		
 		try
 		{
 			int width = 400, height = 200;
@@ -121,38 +151,19 @@ public class project_launcher {
 			Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
 			frame.setLocation(dim.width/2 - frame.getSize().width/2, dim.height/2 - frame.getSize().height/2);
 			
-			File file = new File("response_"+dateFormat.format(date)+".txt");
+			File file = new File("subject_response/response_"+user_name+"_"+dateFormat.format(date)+".txt");
 			FileWriter fw = new FileWriter(file);
 			bw = new BufferedWriter(fw);
+			bw.write("Subject name:" + user_name + '\n');
+			bw.write("Subject contact info:" + user_email + '\n');
+			bw.flush();
+
 			
-			JButton btn1 = new JButton("Full-Screen");
-			btn1.addActionListener(new ActionListener() {
-				@Override
-				public void actionPerformed(ActionEvent e) {
-					device.setFullScreenWindow(frame);
-				}
-			});
-			JButton btn2 = new JButton("Normal");
-			btn2.addActionListener(new ActionListener() {
-				@Override
-				public void actionPerformed(ActionEvent e) {
-					device.setFullScreenWindow(null);
-				}
-			});
-			JButton close = new JButton("Close");
-			close.addActionListener(new ActionListener() {
-
-				@Override
-				public void actionPerformed(ActionEvent e) {
-					// TODO Auto-generated method stub
-					System.exit(0);
-				}
-			});
-
+			
 			JLabel label1 = new JLabel();
 			label1.setSize(80,80);
 			try {
-				BufferedImage myPicture = ImageIO.read(new File("speaker3.png"));
+				BufferedImage myPicture = ImageIO.read(new File("speaker.png"));
 				Image dimg = myPicture.getScaledInstance(label1.getWidth(), label1.getHeight(),
 						Image.SCALE_SMOOTH);
 				ImageIcon imageIcon = new ImageIcon(dimg);
@@ -162,14 +173,6 @@ public class project_launcher {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-
-
-			JPanel panel = new JPanel(new FlowLayout());
-			panel.add(btn1);
-			panel.add(btn2);
-			panel.add(close);
-			Border blackline = BorderFactory.createTitledBorder("Screen control");
-			panel.setBorder(blackline);
 
 			JPanel panel2 = new JPanel(new FlowLayout());
 			panel2.add(label1);
@@ -187,14 +190,42 @@ public class project_launcher {
 				@Override
 				public void actionPerformed(ActionEvent e) {
 					// TODO Auto-generated method stub
-					if(i <= end && is_respond && !is_played) {
+					if(i < end && is_respond && !is_played) {
 						try {
-							i++;
 							
-							sound_play();
-							is_respond = false;
-							is_played = true;
-						} catch (UnsupportedAudioFileException | IOException | LineUnavailableException e1) {
+							if(is_whole_word == 1) {
+								System.out.println("In here");
+								int width2 = 400, height2 = 200;
+								JFrame frame2 = new JFrame("Break");
+								//frame2.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+								//frame.setUndecorated(true);
+								frame2.setPreferredSize(new Dimension(width2, height2));
+								frame2.setSize(width2,height2);
+								Dimension dim2 = Toolkit.getDefaultToolkit().getScreenSize();
+								frame2.setLocation(dim2.width/2 - frame2.getSize().width/2, dim2.height/2 - frame2.getSize().height/2);
+								frame2.setLayout(new BorderLayout());
+								
+								
+								frame2.setVisible(true);
+								
+								TimeUnit.SECONDS.sleep(10);
+								frame2.dispatchEvent(new WindowEvent(frame2, WindowEvent.WINDOW_CLOSING));
+								is_whole_word = 2;
+							}else {
+								start_time = System.nanoTime();
+								sound_play();
+								bw.write(line_translation(file_name));
+								bw.flush();
+								is_respond = false;
+								is_played = true;
+								i++;
+								
+								if(i < end-1) {
+									whole_word_checker(i);
+								}
+								System.out.println(file_name);
+							}
+						} catch (UnsupportedAudioFileException | IOException | LineUnavailableException | InterruptedException e1) {
 							// TODO Auto-generated catch block
 							e1.printStackTrace();
 						}
@@ -202,6 +233,11 @@ public class project_launcher {
 					if(i != 0) btn4.setText("Next");
 					if(i >= end) {
 						btn4.setText("Over");
+						i++;
+						
+					}
+					if(i > end+1) {
+						frame.dispatchEvent(new WindowEvent(frame, WindowEvent.WINDOW_CLOSING));
 						try {
 							out.close();
 						} catch (IOException e1) {
@@ -209,7 +245,7 @@ public class project_launcher {
 							e1.printStackTrace();
 						}
 					}
-					frame.repaint();
+					
 				}
 			});
 
@@ -238,13 +274,15 @@ public class project_launcher {
 					is_respond = true;
 					is_played = false;
 					try {
-						bw.write(response+'\n');
+						end_time = System.nanoTime();
+						bw.write(response+'\t');
+						bw.write(Long.toString((end_time - start_time)/1000000) + '\n');
 						bw.flush();
 					} catch (IOException e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
-					
+
 				}
 			});
 
@@ -257,7 +295,9 @@ public class project_launcher {
 					is_respond = true;
 					is_played = false;
 					try {
-						bw.write(response+'\n');
+						end_time = System.nanoTime();
+						bw.write(response+'\t');
+						bw.write(Long.toString((end_time- start_time)/1000000) + '\n');
 						bw.flush();
 					} catch (IOException e1) {
 						// TODO Auto-generated catch block
@@ -276,7 +316,9 @@ public class project_launcher {
 					is_respond = true;
 					is_played = false;
 					try {
-						bw.write(response+'\n');
+						end_time = System.nanoTime();
+						bw.write(response+'\t');
+						bw.write(Long.toString((end_time - start_time)/1000000) + '\n');
 						bw.flush();
 					} catch (IOException e1) {
 						// TODO Auto-generated catch block
@@ -295,7 +337,9 @@ public class project_launcher {
 					is_respond = true;
 					is_played = false;
 					try {
-						bw.write(response+'\n');
+						end_time = System.nanoTime();
+						bw.write(response+'\t');
+						bw.write(Long.toString((end_time- start_time)/1000000) + '\n');
 						bw.flush();
 					} catch (IOException e1) {
 						// TODO Auto-generated catch block
@@ -314,7 +358,9 @@ public class project_launcher {
 					is_respond = true;
 					is_played = false;
 					try {
-						bw.write(response+'\n');
+						end_time = System.nanoTime();
+						bw.write(response+'\t');
+						bw.write(Long.toString((end_time- start_time)/1000000) + '\n');
 						bw.flush();
 					} catch (IOException e1) {
 						// TODO Auto-generated catch block
@@ -332,7 +378,7 @@ public class project_launcher {
 			frame.add(outpanel);
 			frame.pack();
 			frame.setVisible(true);
-			
+
 
 		}
 		catch (Exception ex) 
@@ -343,21 +389,44 @@ public class project_launcher {
 		} 
 	}
 
-	public static void sound_play() throws UnsupportedAudioFileException, IOException, LineUnavailableException {
+	public static void sound_play() throws UnsupportedAudioFileException, IOException, LineUnavailableException, InterruptedException {
 		
-		String file = names.get(i);
-		file = "record/" + file;
-		audio_player.filePath = file;
+		file_name = names.get(i);
+		file_name = "record/" + file_name;
+		
+		audio_player.filePath = file_name;
 		audio_player audioPlayer = new audio_player(); 
 		audioPlayer.play();
+		
 
 	}
-	
-	public static void file_writer(String str) throws IOException {
-		BufferedWriter writer = new BufferedWriter(new FileWriter("samplefile1.txt"));
-		writer.write(str);
-		writer.close();
+
+
+
+	public static String line_translation(String line) {
+
+		String names = "";
+
+		line = line.replace("record/", "");
+		line = line.replace(".wav", "");
+		String t[] = line.split("_");
+
+		names = t[0]+ '\t' + t[1] + '\t' + t[2] +  '\t' + t[3] + '\t';
+		return names;
 	}
+	
+	public static int whole_word_checker(int i) {
+		String line = names.get(i);
+		line = line.replace("record/", "");
+		line = line.replace(".wav", "");
+		if(line.contains("w") && is_whole_word == 0) {
+			is_whole_word = 1;
+			return 1;
+		}
+		return 0;
+	}
+	
+	
 
 	public static void main(String[] args) 
 	{ 
