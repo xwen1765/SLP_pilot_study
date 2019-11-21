@@ -10,11 +10,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
 import java.awt.image.BufferedImage;
-import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.text.DateFormat;
@@ -26,19 +23,14 @@ import java.util.concurrent.TimeUnit;
 import javax.imageio.ImageIO;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
-import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JCheckBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-import javax.swing.JTextPane;
-import javax.swing.RepaintManager;
 import javax.swing.WindowConstants;
-import javax.swing.border.Border;
 
 public class project_launcher {
 	static GraphicsDevice device = GraphicsEnvironment
@@ -135,6 +127,8 @@ public class project_launcher {
 		gn.random_sequence_generator(gn.required_sequence);
 		String file_name = "subject_stimuli_list/list_"+gn.subject_name+".txt";
 		names = file_translator.file_translation(file_name);
+		String file_word_name = "subject_stimuli_word_list/word_list_"+gn.subject_name+".txt";
+		file_translator.list_output(file_name,file_word_name);
 		end = names.size();
 	}
 
@@ -223,7 +217,7 @@ public class project_launcher {
 								if(i < end-1) {
 									whole_word_checker(i);
 								}
-								System.out.println(file_name);
+								//System.out.println(file_name);
 							}
 						} catch (UnsupportedAudioFileException | IOException | LineUnavailableException | InterruptedException e1) {
 							// TODO Auto-generated catch block

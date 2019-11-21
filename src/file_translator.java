@@ -72,11 +72,15 @@ public class file_translator {
 		
 		return names;
 	}
-	public static void list_output(String file_name) {
+	public static void list_output(String file_name, String output){
 		//FileReader in = new FileReader("input.txt");
 		ArrayList<String> names = new ArrayList<String>();
+		FileWriter out = null;
+		
+			
 		
 		try {
+			out = new FileWriter(output);
 			BufferedReader reader = new BufferedReader(new FileReader(file_name));
 			BufferedReader word_reader = new BufferedReader(new FileReader("single_word.txt"));
 			BufferedReader sequecnce_reader = new BufferedReader(new FileReader("sequence.txt"));
@@ -111,6 +115,7 @@ public class file_translator {
 					String record_name = word+ "_" + speed + "_" + sequence +  "_" + token + ".wav";
 					System.out.println(record_name);
 					
+					out.write(record_name + '\n');
 					names.add(record_name);
 					word_reader.close();
 					sequecnce_reader.close();
@@ -122,6 +127,7 @@ public class file_translator {
 			reader.close();
 			word_reader.close();
 			sequecnce_reader.close();
+			out.close();
 
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
@@ -130,6 +136,7 @@ public class file_translator {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
 		
 	}
 
