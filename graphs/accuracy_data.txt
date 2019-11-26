@@ -1,0 +1,34 @@
+
+                                             
+Python - accuracy_calculator.py:97
+Subject Name:  Jeremy Hartse
+Number of choice for each vowel {'Ate': 16, 'It': 25, 'Etch': 15, 'Axe': 24, 'Eat': 30}
+Number of correct 81
+Accuracy 0.7363636363636363
+
+
+Subject Name:  Brandon James
+Number of choice for each vowel {'Ate': 20, 'It': 31, 'Etch': 23, 'Axe': 8, 'Eat': 28}
+Number of correct 68
+Accuracy 0.6181818181818182
+
+
+Subject Name:  Declan
+Number of choice for each vowel {'Ate': 26, 'It': 35, 'Etch': 7, 'Axe': 1, 'Eat': 41}
+Number of correct 49
+Accuracy 0.44545454545454544
+
+
+Subject Name:  claire
+Number of choice for each vowel {'Ate': 25, 'It': 20, 'Etch': 29, 'Axe': 13, 'Eat': 23}
+Number of correct 63
+Accuracy 0.5727272727272728
+
+
+Subject Name:  Hanyu Xia
+Number of choice for each vowel {'Ate': 25, 'It': 20, 'Etch': 11, 'Axe': 22, 'Eat': 32}
+Number of correct 84
+Accuracy 0.7636363636363637
+
+
+[Finished in 19.301s]
