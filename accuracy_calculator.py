@@ -100,7 +100,7 @@ for filename in os.listdir("subject_response"):
     plt.savefig("graphs/precentage_response"+sub_name+".png")
     plt.show()
 
-    plt.figure()
+    rect = plt.figure()
     plt.bar(r1, choice_correct_print_table, width = 0.25, label="Accuracy for each vowel")
     plt.xlabel('Vowel', fontweight='bold')
     plt.title("Subject name:"+sub_name)
