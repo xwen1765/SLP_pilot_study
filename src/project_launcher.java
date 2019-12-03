@@ -246,11 +246,11 @@ public class project_launcher {
 			JPanel panel4 = new JPanel(new FlowLayout());
 
 
-			JButton panel4_but1 = new JButton("It");
-			JButton panel4_but2 = new JButton("Eat");
-			JButton panel4_but3 = new JButton("Ate");
-			JButton panel4_but4 = new JButton("Etch");
-			JButton panel4_but5 = new JButton("Axe");
+			JButton panel4_but1 = new JButton("itch");
+			JButton panel4_but2 = new JButton("egg");
+			JButton panel4_but3 = new JButton("axe");
+			JButton panel4_but4 = new JButton("ease");
+			JButton panel4_but5 = new JButton("ape");
 			panel4.add(panel4_but1);
 			panel4.add(panel4_but2);
 			panel4.add(panel4_but3);

@@ -3,13 +3,13 @@ import matplotlib.pyplot as plt
 import os
 
 # Initialize
-ape = ['ape','hate','hated','fate','fated']
-axe  = ['axe','chatted','patted','pat','chat']
-ease = ['ease','seat','seated','heated','cheated','cheat','heat']
-edge = ['edge','pet','petted','set']
-itch = ['itch','pit','fitted','pitted','fit']
-word_table = {'ape' : 2,'itch': 2,'edge': 2,'axe': 2,'ease': 3};
-word_choice = [ape, axe, ease, edge, itch]
+Ate = ['Ate','hate','hated','fate','fated']
+Axe  = ['Axe','chatted','patted','pat','chat']
+Eat = ['Eat','seat','seated','heated','cheated','cheat','heat']
+Etch = ['Etch','pet','petted','set']
+It = ['It','pit','fitted','pitted','fit']
+word_table = {'Ate' : 2,'It': 2,'Etch': 2,'Axe': 2,'Eat': 3};
+word_choice = [Ate, Axe, Eat, Etch, It]
 
 def is_correct(word_choice, line_in_txt):
     for item in word_choice:
@@ -32,7 +32,7 @@ def autolabel(rects):
                     ha='center', va='bottom')
 
 
-choice_table = {'ape' : 0,'itch': 0,'edge': 0,'axe': 0,'ease': 0}
+choice_table = {'Ate' : 0,'It': 0,'Etch': 0,'Axe': 0,'Eat': 0}
 number_sub = 0
 total_correct = 0
 
@@ -56,8 +56,8 @@ for filename in os.listdir("subject_response"):
     # Run accuracy analysis for each subject
 
 
-    choice_table = {'ape' : 0,'itch': 0,'edge': 0,'axe': 0,'ease': 0}
-    choice_correct_table = {'ape' : 0,'itch': 0,'edge': 0,'axe': 0,'ease': 0}
+    choice_table = {'Ate' : 0,'It': 0,'Etch': 0,'Axe': 0,'Eat': 0}
+    choice_correct_table = {'Ate' : 0,'It': 0,'Etch': 0,'Axe': 0,'Eat': 0}
     correct = 0
     total = 0
 
@@ -95,7 +95,7 @@ for filename in os.listdir("subject_response"):
     plt.xlabel('Vowel', fontweight='bold')
     plt.title("Subject name:"+sub_name)
     plt.legend()
-    plt.xticks([r + barWidth for r in range(len(choice_table.keys()))], ['ape','itch','edge','axe','ease'])
+    plt.xticks([r + barWidth for r in range(len(choice_table.keys()))], ['Ate','It','Etch','Axe','Eat'])
     plt.axis(ymax=0.40)
     plt.savefig("graphs/precentage_response"+sub_name+".png")
     plt.show()
@@ -105,7 +105,7 @@ for filename in os.listdir("subject_response"):
     plt.xlabel('Vowel', fontweight='bold')
     plt.title("Subject name:"+sub_name)
     plt.legend()
-    plt.xticks([r for r in range(len(choice_table.keys()))], ['ape','itch','edge','axe','ease'])
+    plt.xticks([r for r in range(len(choice_table.keys()))], ['Ate','It','Etch','Axe','Eat'])
     # plt.axis(ymax=0.40)
     plt.savefig("graphs/accuracy_each_vowel"+sub_name+".png")
     plt.show()

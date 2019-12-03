@@ -1,0 +1,8 @@
+Subject name:xxxx
+Subject contact info:xxxx
+fit	f	sc	1	axe	723
+pat	f	sc	1	axe	531
+seat	f	sc	1	egg	516
+hate	f	sc	1	itch	915
+pet	f	sc	2	ease	590
+pet	f	sc	2	ape	614
