@@ -32,7 +32,9 @@ def autolabel(rects):
                     ha='center', va='bottom')
 
 
-choice_table = {'Ate' : 0,'It': 0,'Etch': 0,'Axe': 0,'Eat': 0}
+total_choice_table = {'Ate' : 0,'It': 0,'Etch': 0,'Axe': 0,'Eat': 0}
+total_choice_table_correct = {'Ate' : 0,'It': 0,'Etch': 0,'Axe': 0,'Eat': 0}
+
 number_sub = 0
 total_correct = 0
 
@@ -66,8 +68,10 @@ for filename in os.listdir("subject_response"):
         if(len(split_elem) > 3):
             total += 1
             choice_table[split_elem[4]]+=1
+            total_choice_table[split_elem[4]]+=1
             if(is_correct(word_choice, split_elem)):
                 choice_correct_table[split_elem[4]]+=1
+                total_choice_table_correct[split_elem[4]]+=1
                 correct += 1
 
     print("Number of choice for each vowel",choice_table)
@@ -101,7 +105,7 @@ for filename in os.listdir("subject_response"):
     plt.show()
 
     rect = plt.figure()
-    plt.bar(r1, choice_correct_print_table, width = 0.25, label="Accuracy for each vowel")
+    plt.bar(r1, choice_correct_print_table, width = 0.75, label="Accuracy for each vowel")
     plt.xlabel('Vowel', fontweight='bold')
     plt.title("Subject name:"+sub_name)
     plt.legend()
@@ -109,3 +113,20 @@ for filename in os.listdir("subject_response"):
     # plt.axis(ymax=0.40)
     plt.savefig("graphs/accuracy_each_vowel"+sub_name+".png")
     plt.show()
+
+
+total_choice_print_table = [];
+for sub in total_choice_table:
+    choice_print_table.append(total_choice_table[sub]);
+
+total_choice_print_table_corrent = [];
+for sub in total_choice_table_correct:
+    total_choice_print_table_corrent.append(total_choice_table_correct[sub]/total_choice_table[sub]);
+
+print(total_choice_print_table_corrent)
+plt.bar(r1, total_choice_print_table_corrent, width = 0.75)
+plt.xticks([r for r in range(len(choice_table.keys()))], ['Ate','It','Etch','Axe','Eat'])
+plt.xlabel('Vowel', fontweight='bold')
+plt.title("Overall accuracy across 5 subjects")
+plt.savefig("graphs/Overall accuracy across 5 subjects"+".png")
+plt.show()

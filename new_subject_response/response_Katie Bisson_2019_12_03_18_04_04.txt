@@ -1,0 +1,122 @@
+Subject name:Katie Bisson
+Subject contact info:kbisson@u.rochester.edu
+pit	f	sc	1	egg	21817
+hate	f	sc	1	ape	6184
+fit	f	sc	2	itch	82893
+fate	f	sc	1	ease	9784
+fit	f	sc	2	itch	2447
+chat	f	sc	2	egg	8290
+fate	f	sc	2	ape	20805
+fit	f	sc	1	ease	4733
+hate	f	sc	1	ape	3058
+pet	f	sc	2	axe	4080
+chat	f	sc	2	axe	1696
+set	f	sc	1	egg	2062
+heat	f	sc	1	ease	3385
+seat	f	sc	2	itch	2464
+itch	4726
+set	f	sc	2	itch	1806
+seat	f	sc	2	egg	2213
+cheat	f	sc	1	ease	2533
+chat	f	sc	1	axe	2414
+pat	f	sc	1	axe	1616
+fit	f	sc	1	ease	9607
+seat	f	sc	1	ease	2924
+pet	f	sc	1	axe	2454
+axe	2731
+seat	f	sc	1	itch	3563
+cheat	f	sc	1	ease	2648
+pit	f	sc	2	itch	2343
+itch	4149
+egg	5017
+pit	f	sc	1	egg	1575
+pat	f	sc	1	egg	1632
+fate	f	sc	2	itch	5242
+axe	7991
+pit	f	sc	2	itch	2035
+egg	3473
+heat	f	sc	1	ease	3874
+pet	f	sc	1	axe	4053
+set	f	sc	1	egg	2731
+fate	f	sc	1	ape	5971
+set	f	sc	2	egg	2391
+heat	f	sc	2	ease	4239
+heat	f	sc	2	ease	1778
+hate	f	sc	2	ape	1841
+cheat	f	sc	2	ease	3702
+pet	f	sc	2	axe	1947
+hate	f	sc	2	ape	1850
+chat	f	sc	1	axe	1963
+cheat	f	sc	2	ease	1745
+pat	f	sc	2	axe	1866
+pat	f	sc	2	axe	1268
+pit	s	sc	1	egg	1276
+chat	s	sc	2	axe	2140
+pit	s	sc	2	egg	1114
+seat	s	sc	1	ease	1857
+pit	s	sc	2	egg	1446
+cheat	s	sc	1	ease	2827
+cheat	s	sc	1	ease	1448
+fate	s	sc	2	ape	4627
+fate	s	sc	2	ape	1494
+heat	s	sc	2	ease	3078
+chat	s	sc	1	axe	2060
+set	s	sc	1	axe	3195
+pet	s	sc	1	egg	1390
+pet	s	sc	1	egg	1245
+set	s	sc	2	egg	1766
+pit	s	sc	1	egg	1862
+seat	s	sc	1	ease	1729
+chat	s	sc	2	axe	1987
+hate	s	sc	2	ape	1422
+hate	s	sc	2	ape	1567
+fate	s	sc	1	ape	4516
+set	s	sc	2	egg	1559
+heat	s	sc	2	ease	2763
+heat	s	sc	1	ease	1414
+pat	s	sc	1	axe	2327
+fate	s	sc	1	ape	2327
+cheat	s	sc	2	ease	2359
+heat	s	sc	1	ease	2189
+ease	6670
+hate	s	sc	1	axe	2168
+pet	s	sc	2	egg	1995
+fit	s	sc	1	itch	4386
+pat	s	sc	1	axe	2908
+set	s	sc	1	itch	1817
+pat	s	sc	2	egg	1494
+fit	s	sc	1	ape	2682
+cheat	s	sc	2	ease	2440
+pat	s	sc	2	egg	1371
+pet	s	sc	2	egg	1106
+hate	s	sc	1	egg	2375
+fit	s	sc	2	ape	3022
+chat	s	sc	1	axe	1939
+seat	s	sc	2	ease	2205
+fit	s	sc	2	itch	2529
+seat	s	sc	2	ease	1737
+fate	s	w	1	ape	2795
+pit	s	w	2	itch	1801
+hate	s	w	2	ape	1365
+seat	s	w	1	ease	2431
+ease	2770
+chat	s	w	2	axe	1766
+set	s	w	2	egg	1502
+cheat	s	w	2	ease	2739
+seat	s	w	2	ease	1866
+pat	s	w	1	axe	1938
+fit	s	w	2	itch	1438
+itch	3335
+fate	s	w	2	ape	2415
+pit	s	w	1	itch	1583
+cheat	s	w	1	ease	1939
+fit	s	w	1	itch	1417
+itch	2104
+pet	s	w	1	egg	1365
+pet	s	w	2	egg	1381
+heat	s	w	1	ease	1826
+chat	s	w	1	axe	3143
+heat	s	w	2	ease	1268
+pat	s	w	2	egg	1228
+hate	s	w	1	ape	1363
+set	s	w	1	egg	1470
