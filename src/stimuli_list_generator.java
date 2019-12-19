@@ -16,6 +16,9 @@ public class stimuli_list_generator {
 	public Trials[] random_sequence_generator(int required_sequence) {
 		int num_trial = num_word * 2 * 2 * 2 + num_word * 2;//*token * repetition * speed + whole word (word * token; fast)
 		int num_list1 = num_word * 2 * 2, num_list2 = num_word * 2 * 2, num_list3 = num_word * 2;
+		//remove this line when you have two speeds
+		num_list1 = 0;
+		num_trial = num_word * 2 * 2 + num_word * 2;
 		
 		//initialize all trials in the list
 		Trials trial[] = new Trials[num_trial];

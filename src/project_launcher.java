@@ -386,7 +386,7 @@ public class project_launcher {
 	public static void sound_play() throws UnsupportedAudioFileException, IOException, LineUnavailableException, InterruptedException {
 		
 		file_name = names.get(i);
-		file_name = "record/" + file_name;
+		file_name = "American_recording/" + file_name;
 		
 		audio_player.filePath = file_name;
 		audio_player audioPlayer = new audio_player(); 
@@ -401,7 +401,7 @@ public class project_launcher {
 
 		String names = "";
 
-		line = line.replace("record/", "");
+		line = line.replace("American_recording/", "");
 		line = line.replace(".wav", "");
 		String t[] = line.split("_");
 
@@ -411,7 +411,7 @@ public class project_launcher {
 	
 	public static int whole_word_checker(int i) {
 		String line = names.get(i);
-		line = line.replace("record/", "");
+		line = line.replace("American_recording/", "");
 		line = line.replace(".wav", "");
 		if(line.contains("w") && is_whole_word == 0) {
 			is_whole_word = 1;
